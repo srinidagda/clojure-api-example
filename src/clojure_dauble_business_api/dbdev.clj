@@ -5,7 +5,7 @@
 
 (def db-spec {:classname "net.sf.log4jdbc.DriverSpy"
               :subprotocol "log4jdbc:postgresql"
-              :subname "//localhost:5432/daubledb"
+              :subname "//localhost:5432/testdb"
               :user "user"
               :password "user123"})
 
