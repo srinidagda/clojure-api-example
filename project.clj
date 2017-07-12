@@ -15,11 +15,12 @@
                  [org.clojure/data.json "0.2.6"]
                  [cheshire "5.7.1"]
                  [com.googlecode.log4jdbc/log4jdbc "1.2"]
-                 [org.slf4j/slf4j-simple "1.7.12"]
+                 [org.slf4j/slf4j-log4j12 "1.7.21"]
                  [org.clojure/tools.logging "0.3.1"]
                  [log4j/log4j "1.2.17" :exclusions [javax.mail/mail
                                                     javax.jms/jms
                                                     com.sun.jmdk/jmxtools
                                                     com.sun.jmx/jmxri]]]
+  :profiles {:dev {:resource-paths ["resources"]}}
   :plugins [[lein-ring "0.12.0"]]
   :main clojure-dauble-business-api.routes)
