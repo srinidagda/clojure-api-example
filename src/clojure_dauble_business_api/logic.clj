@@ -7,3 +7,6 @@
   (json/generate-string (dbdev/artwork-by-id id)))
 (defn artworks[]
   (json/generate-string (dbdev/artworkslist)))
+(defn create-city
+  [name]
+  (json/generate-string (dbdev/create-city name)))

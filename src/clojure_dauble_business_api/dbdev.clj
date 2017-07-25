@@ -17,3 +17,7 @@
 
 (defn artworkslist[]
   (artworks))
+
+(defn create-city
+  [name]
+  (create-city<! {:name name}))
