@@ -6,10 +6,15 @@
             [clojure-dauble-business-api.domain.artwork])
   (:import [clojure_dauble_business_api.domain.artwork Artwork]))
 
+
 (defapi app
   (GET ["/hello/:id", :id #"[0-9]+"] [id]
     (log/info "Function begins from here" id)
-    (ok {:artwork (logic/artwork-id (->> id (re-find #"\d+") Long/parseLong))}))
+    (def artworkData (logic/artwork-id (->> id (re-find #"\d+") Long/parseLong)))
+    (def data (if (not-empty artworkData)
+               {:data artworkData :status 200}
+               {:data [] :status 201}))
+   (ok data))
   (POST "/create" params
    (log/info "Create - Function begins from here and body" (get-in params [:params :artwork :name]))
    (ok {:artwork (logic/create-city (get-in params [:params :artwork :name]))})))
