@@ -1,7 +1,10 @@
 -- name: artwork-details
-select id as id, name as name
-from artwork
-where id = :id
+select artwork.id as artworkId, artwork.name as artworkName,
+       artist.id as artistId, concat_ws(' ',trim(concat_ws(' ',artist.first_name,artist.middle_name)),artist.last_name) as artistName
+from artwork artwork
+     inner join artist artist on artist.id = artwork.artist_id
+where artwork.id = :id
+and artwork.status = 1
 
 -- name: artworks
 select id as id, name as name
