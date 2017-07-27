@@ -1,9 +1,17 @@
 (ns clojure-dauble-business-api.routes
-    (:require [ring.adapter.jetty :as jetty])
     (:require [compojure.core :refer :all]
+              [ring.adapter.jetty :as jetty]
+              [ring.middleware.cors :refer [wrap-cors]]
              (clojure-dauble-business-api [core :as core]
                                           [test :as t])))
 (def app
  (routes core/app t/test))
 
-(jetty/run-jetty app {:port 3000})
+(def handler
+    (-> app
+        (wrap-cors
+         :access-control-allow-origin [#"http://example.com"]
+         :access-control-allow-methods [:get :put :post :delete])))
+
+
+(jetty/run-jetty handler {:port 3000})
